@@ -1,0 +1,22 @@
+# KiCad
+*-backups/
+*.kicad_prl
+fp-info-cache
+_autosave-*
+*.lck
+~*.lck
+
+# Mating-view copy of the board, rebuilt by tools/build_board.py and removed by make_all.py
+hardware/*/*-mating.kicad_pcb
+hardware/*/*-mating.kicad_pro
+
+# Netlists contain absolute local paths; intermediate build output
+build/
+*.net
+
+# Python and editors
+__pycache__/
+*.pyc
+.vscode/
+Thumbs.db
+.DS_Store

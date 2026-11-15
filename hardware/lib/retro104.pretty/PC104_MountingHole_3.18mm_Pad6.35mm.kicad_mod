@@ -1,0 +1,98 @@
+(footprint "PC104_MountingHole_3.18mm_Pad6.35mm"
+	(version 20241229)
+	(generator "retro104")
+	(generator_version "1.0")
+	(layer "F.Cu")
+	(descr "PC/104 mounting hole: 0.125 in (3.18 mm) plated hole, 0.250 in (6.35 mm) pad, PC/104 Specification v2.6 Fig. 3. No net (electrically empty).")
+	(tags "PC/104 mounting hole standoff")
+	(property "Reference" "REF**"
+		(at 0 -4.2 0)
+		(layer "F.Fab")
+		(uuid "be8a2cd3-4cec-5a57-b7df-e116c4cd8a36")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "PC104_MountingHole_3.18mm_Pad6.35mm"
+		(at 0 4.2 0)
+		(layer "F.Fab")
+		(uuid "95add240-99b0-5610-987c-30f6f7367b5d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "aad3b98a-7aae-5fa9-837f-0681f41f59be")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e2f68e3e-5642-5066-bc52-50bf0a5ed8c5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr exclude_from_pos_files exclude_from_bom)
+	(fp_circle
+		(center 0 0)
+		(end 3.175 0)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "4113ada4-b54e-58a1-9775-dffafee6dbdd")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 3.425 0)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "72394abc-32a2-5529-8e65-d7a160b1e43a")
+	)
+	(pad "" thru_hole circle
+		(at 0 0)
+		(size 6.35 6.35)
+		(drill 3.18)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "f398c89c-4d8c-567c-8610-316c5cf58801")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/../lib/3d/PC104_standoff_0.600in_illustrative.wrl"
+		(hide yes)
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
