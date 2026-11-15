@@ -1,0 +1,4 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "retro104")(type "KiCad")(uri "${KIPRJMOD}/../lib/retro104.pretty")(options "")(descr "retro104 shared PC/104 footprints"))
+)

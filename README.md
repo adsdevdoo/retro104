@@ -7,7 +7,7 @@ Advantech **PCM-3860/64 Rev.A1** с видеоконтроллером C&T F6554
 | Этап | Плата | Состояние |
 |---|---|---|
 | 1 | [`pc104-blank`](hardware/pc104-blank/) — пустая механическая ответка | **rev A: ERC 0, DRC 0, контакты сверены 104/104, Gerber проверены. Не изготовлена** |
-| 2 | Звуковая карта | не начата: архитектура и компоненты — отдельное обсуждение |
+| 2 | [`pc104-audio`](hardware/pc104-audio/) — звуковая карта на ESS ES1868F (донор BTC 1853L) | **rev A: ERC 0, нетлист сверен, разведена (FreeRouting), DRC 0, Gerber проверены. Не изготовлена** — [docs/pc104-audio.md](docs/pc104-audio.md) |
 | 3 | Ethernet | не начата |
 
 **`pc104-blank` — не аудиокарта.** Это электрически пустой модуль PC/104: только площадки разъёмов
@@ -51,6 +51,9 @@ CN1/CN2 и четыре крепёжных отверстия. На нём пр�
 | [docs/models.md](docs/models.md) | 3D-модели и их ограничения |
 | [docs/sources.md](docs/sources.md) | документы, фото, ссылки и лицензионные пометки |
 | [docs/pc104-blank-schematic.pdf](docs/pc104-blank-schematic.pdf) | схема (все выводы не подключены) |
+| [docs/audio-options.md](docs/audio-options.md) | варианты звуковой карты и решения владельца |
+| [docs/pc104-audio.md](docs/pc104-audio.md) | звуковая карта: схема, IRQ/DMA, разъём game/MIDI, первая настройка |
+| [docs/pc104-audio-schematic.pdf](docs/pc104-audio-schematic.pdf), [docs/pc104-audio-assembly.pdf](docs/pc104-audio-assembly.pdf) | схема и сборочный чертёж звуковой карты |
 
 Документы производителей лежат в [docs/datasheets/](docs/datasheets/), фото хоста — в
 [docs/references/photos/](docs/references/photos/).

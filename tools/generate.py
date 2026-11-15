@@ -399,8 +399,10 @@ def hole_symbol(prefix=""):
 
 
 def symbol_library():
+    import symbols
     lib = ["kicad_symbol_lib", ["version", 20241209], ["generator", Q("retro104")], ["generator_version", Q("1.0")],
            connector_symbol("J1"), connector_symbol("J2"), hole_symbol()]
+    lib += [s.node() for s in symbols.audio_symbols()]
     return dump(lib)
 
 
@@ -557,6 +559,9 @@ def main():
         write(os.path.join(LIB, "3d", "Samtec_%s_illustrative.wrl" % MPN[which]), stack)
         write(os.path.join(LIB, "3d", "PC104_host_%s_socket_mating_reference.wrl" % which), host)
     write(os.path.join(LIB, "3d", "PC104_standoff_0.600in_illustrative.wrl"), standoff_model())
+    import stock_parts
+    for name in stock_parts.copy_stock(os.path.join(LIB, "retro104.pretty"), os.path.join(LIB, "3d")):
+        print("copied stock footprint", name)
     write(os.path.join(PRJ, PRJ_NAME + ".kicad_sch"), schematic())
     pro = os.path.join(PRJ, PRJ_NAME + ".kicad_pro")
     if os.path.exists(pro) and "--force" not in sys.argv:

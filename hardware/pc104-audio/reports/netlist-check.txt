@@ -1,0 +1,4 @@
+pc104-audio: netlist vs tools/audio_design.py
+nets in design: 90, nets in netlist: 171 (of them unconnected-*: 81)
+pins connected: 288, pins marked NC: 81, components: 70
+differences: 0
