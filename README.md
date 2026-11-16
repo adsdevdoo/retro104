@@ -15,7 +15,8 @@ Advantech **PCM-3860/64 Rev.A1** с видеоконтроллером C&T F6554
 | 3 | Ethernet | не начата |
 
 **Статус: инженерные прототипы, не изготавливались и в железе не проверялись.**
-Заказ, оплату и загрузку файлов в JLCPCB выполняет владелец.
+Заказ, оплату и загрузку файлов в JLCPCB выполняет владелец. Изменения плат по ревизиям —
+[CHANGELOG.md](CHANGELOG.md).
 
 ## pc104-audio — звуковая карта
 
@@ -95,6 +96,7 @@ LPT хоста — на IRQ7. Подробно — [docs/pc104-audio.md](docs/pc
 | [docs/manufacturing.md](docs/manufacturing.md) | заказ обеих плат в JLCPCB, что проверено и что нет |
 | [docs/models.md](docs/models.md) | 3D-модели и их ограничения |
 | [docs/sources.md](docs/sources.md) | документы, фото, открытые проекты, лицензионные пометки |
+| [CHANGELOG.md](CHANGELOG.md) | изменения плат по ревизиям: медь, шелкография, файлы производства |
 
 Документы производителей лежат в [docs/datasheets/](docs/datasheets/), фото хоста и донора — в
 [docs/references/photos/](docs/references/photos/).
