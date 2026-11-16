@@ -58,15 +58,8 @@ JOY = ["R6", "R10", "C25", "R7", "R11", "C26", "R8",
 for i, ref in enumerate(JOY):
     PLACE[ref] = (62.0 + (i % 8) * 4.5, JOY_ROWS[i // 8], 0)
 
-# silkscreen references stay visible for these; 0805/CP/FB references go to F.Fab (assembly drawing)
-SILK_REFS = {"U1", "U2", "U3", "Y1", "J1", "J2", "J3", "J4", "JP1", "JP2", "CN1", "CN2"}
 NOT_IN_BOM = ("MountingHole_PC104", "SolderJumper_3_Bridged12")
-# absolute positions of the silkscreen references (horizontal text, away from pads)
-REF_AT = {
-    "U1": (95.0, 96.0), "U2": (114.0, 92.0), "U3": (114.81, 106.81), "Y1": (78.5, 100.56),
-    "J1": (66.0, 57.0), "J2": (81.5, 57.0), "J3": (97.0, 57.0), "J4": (95.1, 134.5),
-    "JP1": (129.6, 102.0), "JP2": (129.6, 106.0), "CN2": (124.5, 80.0), "CN1": (141.6, 119.6),
-}
+# Silkscreen (references, values, labels) is drawn after routing by tools/audio_silk.py.
 
 
 def mm(v):
@@ -179,20 +172,11 @@ def main():
         fp.SetPosition(V(x, y))
         fp.SetOrientationDegrees(rot)
         r = fp.Reference()
-        r.SetTextSize(p.VECTOR2I(mm(1.0), mm(1.0)))
-        r.SetTextThickness(mm(0.15))
-        if ref in REF_AT:
-            r.SetPosition(V(*REF_AT[ref]))
-            r.SetTextAngle(p.EDA_ANGLE(0, p.DEGREES_T))
-            if ref.startswith("CN"):
-                r.SetTextSize(p.VECTOR2I(mm(1.5), mm(1.5)))
-                r.SetTextThickness(mm(0.2))
-        if ref not in SILK_REFS:
-            r.SetLayer(p.F_Fab)
-            r.SetTextSize(p.VECTOR2I(mm(0.6), mm(0.6)))
-            r.SetTextThickness(mm(0.1))
-            r.SetPosition(V(x, y))
-            r.SetTextAngle(p.EDA_ANGLE(0, p.DEGREES_T))
+        r.SetLayer(p.F_Fab)  # audio_silk.py moves it to F.Silkscreen next to the part
+        r.SetTextSize(p.VECTOR2I(mm(0.6), mm(0.6)))
+        r.SetTextThickness(mm(0.1))
+        r.SetPosition(V(x, y))
+        r.SetTextAngle(p.EDA_ANGLE(0, p.DEGREES_T))
         fp.Value().SetVisible(False)
         fp.SetExcludedFromBOM(part["sym"] in NOT_IN_BOM)
         for pad in fp.Pads():

@@ -44,6 +44,7 @@
   pc104-blank, рендеры, Gerber и отчёты; `.kicad_pro` — только с `--force`. Перед запуском проверять
   `git status`, чтобы не затереть ручные правки KiCad.
 - pc104-audio: детали и цепи — только в `tools/audio_design.py` (источник для схемы, платы и проверок).
+  Шелкография — только в `tools/audio_silk.py`: медь не трогает, `make_all.py` запускает его всегда.
   Разводка — FreeRouting 2.5.0 (`../tools/freerouting-2.5.0.jar`, вне репозитория, официальный релиз
   github.com/freerouting/freerouting, SHA-256 f6f51bb0…5de3c7). Перетрассировка — только
   `make_all.py --route-audio`: результат FreeRouting от запуска к запуску может отличаться.

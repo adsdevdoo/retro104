@@ -42,15 +42,15 @@ LPT хоста — на IRQ7. Подробно — [docs/pc104-audio.md](docs/pc
 ![pc104-audio rev A, верх (CAD-рендер)](images/pc104-audio-top.png)
 
 <details>
-<summary>Низ платы: дорожки, сшивка земли, таблица ресурсов на шелкографии</summary>
+<summary>Низ платы: название, таблицы IRQ/DRQ и ресурсов, перемычки, выводы J4 на шелкографии</summary>
 
 ![pc104-audio rev A, низ (CAD-рендер)](images/pc104-audio-bottom.png)
 
 </details>
 
 Плата 95.89 × 90.17 мм, 2 слоя. Сигналы 0.25 мм, питание 0.4 мм, земля залита с двух сторон и
-сшита. Трассировка — FreeRouting 2.5.0. Обозначения пассивных деталей 0805 — на сборочном чертеже
-[pc104-audio-assembly.pdf](docs/pc104-audio-assembly.pdf). Архив для заказа:
+сшита. Трассировка — FreeRouting 2.5.0. На шелкографии верха обозначения всех деталей, у микросхем,
+кварца и электролитов — номиналы. Архив для заказа:
 [hardware/pc104-audio/fabrication/](hardware/pc104-audio/fabrication/).
 
 ## pc104-blank — механическая ответка

@@ -3,8 +3,7 @@
   "C:/Program Files/KiCad/9.0/bin/python.exe" tools/route_audio_board.py build/audio/pc104-audio.net
 
 Imports build/audio/placed.ses into build/audio/placed.kicad_pcb, assigns the single-pad
-"unconnected-*" nets (schematic parity), pours GND on both layers and stitches them, adds the
-silkscreen and saves hardware/pc104-audio/pc104-audio.kicad_pcb. Net classes and rules that pcbnew
+"unconnected-*" nets (schematic parity), pours GND on both layers and stitches them and saves hardware/pc104-audio/pc104-audio.kicad_pcb. Net classes and rules that pcbnew
 wrote next to the placed board are merged into hardware/pc104-audio/pc104-audio.kicad_pro.
 """
 
@@ -24,21 +23,6 @@ PRJ = os.path.join(REPO, "hardware", B.PRJ_NAME)
 OUT = os.path.join(PRJ, B.PRJ_NAME + ".kicad_pcb")
 PRO = os.path.join(PRJ, B.PRJ_NAME + ".kicad_pro")
 mm, V = B.mm, B.V
-
-
-def text(b, s, x, y, size=1.0, layer=p.F_SilkS, thick=0.15, justify="center", angle=0):
-    t = p.PCB_TEXT(b)
-    t.SetText(s)
-    t.SetLayer(layer)
-    t.SetTextSize(p.VECTOR2I(mm(size), mm(size)))
-    t.SetTextThickness(mm(thick))
-    t.SetHorizJustify({"center": p.GR_TEXT_H_ALIGN_CENTER, "left": p.GR_TEXT_H_ALIGN_LEFT,
-                       "right": p.GR_TEXT_H_ALIGN_RIGHT}[justify])
-    t.SetMirrored(layer == p.B_SilkS)
-    t.SetTextAngle(p.EDA_ANGLE(angle, p.DEGREES_T))
-    t.SetPosition(V(x, y))
-    b.Add(t)
-    return t
 
 
 def gnd_zone(b, layer, net):
@@ -193,35 +177,6 @@ def fix_clearance(b, clearance=0.2, margin=0.002):
     print("shrunk %d tracks/vias by a few microns for clearance" % fixed)
 
 
-def silkscreen(b):
-    S, BS = p.F_SilkS, p.B_SilkS
-    y = B.TOP + 12.9  # just below the jack bodies (courtyard ends at 61.5)
-    for ref, label in (("J1", "LINE OUT"), ("J2", "LINE IN"), ("J3", "MIC")):
-        x = B.PLACE[ref][0]
-        text(b, label, x, y)
-        text(b, label, x, y, layer=BS)
-    # bus connector names (same convention as pc104-blank)
-    text(b, "J1/P1 A,B", 124.5, 82.4)
-    text(b, "J2 C,D", 141.6, 121.9)
-    text(b, "pc104-audio A", 121.0, 66.0, size=1.2, thick=0.18)
-    text(b, "ES1868F", 121.0, 68.6)
-    # bottom side: title, header pinout, jumpers, resources
-    mid = 80.0  # free of THT pads on the bottom side (jacks above, Y1/U3 below)
-    lines = [
-        ("retro104 pc104-audio rev A  -  ESS ES1868F", 1.4, 0.2),
-        ("PC/104 16-bit, CN2 = J1/P1 (A,B), CN1 = J2/P2 (C,D)", 1.0, 0.15),
-        ("SB Pro + ESFM (OPL3) + MPU-401 + game port", 1.0, 0.15),
-        ("IRQ A..F = 9,5,7,10,11,12   DRQ A..D = 0,1,3,5", 1.0, 0.15),
-        ("JP1/JP2 1-2 (H): PnP data from 93C66 U3", 1.0, 0.15),
-        ("JP1/JP2 2-3 (L): ES1868 internal ROM", 1.0, 0.15),
-        ("J4 GAME/MIDI: std 16-pin bracket cable,", 1.0, 0.15),
-        ("pin 1 = +5V, 8 = MIDI OUT, 14 = MIDI IN, 16 = key", 1.0, 0.15),
-        ("not tested in hardware", 1.0, 0.15),
-    ]
-    for i, (s, size, th) in enumerate(lines):
-        text(b, s, mid, 66.0 + i * 2.6, size=size, layer=BS, thick=th)
-
-
 def merge_project_rules():
     src = json.load(open(os.path.join(BUILD, "placed.kicad_pro"), encoding="utf-8"))
     dst = json.load(open(PRO, encoding="utf-8"))
@@ -269,7 +224,6 @@ def main():
         gnd_zone(b, layer, gnd)
     p.ZONE_FILLER(b).Fill(b.Zones())
     stitch_gnd(b, gnd)
-    silkscreen(b)
     tb = b.GetTitleBlock()
     tb.SetTitle("retro104 pc104-audio: PC/104 sound card, ESS ES1868F")
     tb.SetRevision("A")

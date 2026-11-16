@@ -110,6 +110,7 @@ def audio(force, route):
         run("java", "-jar", JAR, "-de", "placed.dsn", "-do", "placed.ses", "-mp", "100", "--gui.enabled=false",
             "--router.optimizer.enabled=false", cwd=os.path.join(REPO, build))
         run(KPY, "tools/route_audio_board.py", net)
+    run(KPY, "tools/audio_silk.py")  # silkscreen only, idempotent: copper and routing stay
     run(CLI, "pcb", "drc", "--schematic-parity", "--severity-all", "--format", "report",
         "-o", os.path.join(reports, "drc.rpt"), pcb)
     render("images/pc104-audio-top.png", pcb, "--side", "top", "-w", "1600", "-h", "1500")
